@@ -7,6 +7,10 @@ WORKDIR /app
 # Add `/app/node_modules/.bin` to PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
+# This is a fix for this reported issue, can likely remove at some point in the future
+# https://github.com/nodejs/corepack/issues/612
+RUN npm install -g corepack@latest
+
 # Enable Corepack for managing pnpm and Yarn versions
 RUN corepack enable
 
@@ -16,7 +20,7 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN if [ -f package-lock.json ]; then npm install; \
     elif [ -f yarn.lock ]; then yarn install; \
     elif [ -f pnpm-lock.yaml ]; then pnpm install; \
-    else echo "No lockfile found. Exiting." && exit 1; \
+    else echo "No lockfile found. Attempting install anyways with npm" && npm install; \
     fi
 
 # Copy the app's source code and build it
