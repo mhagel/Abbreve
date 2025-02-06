@@ -16,7 +16,7 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN if [ -f package-lock.json ]; then npm install; \
     elif [ -f yarn.lock ]; then yarn install; \
     elif [ -f pnpm-lock.yaml ]; then pnpm install; \
-    else echo "No lockfile found. Attempting install anyways with npm" && npm install; \
+    else echo "No lockfile found. Exiting." && exit 1; \
     fi
 
 # Copy the app's source code and build it
