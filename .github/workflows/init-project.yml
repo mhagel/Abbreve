@@ -1,7 +1,7 @@
 name: Deploy to Cloudzilla
 on:
   push:
-    branches: [staging]
+    branches: [develop]
   workflow_dispatch:
 
 env:
@@ -80,7 +80,7 @@ jobs:
         with:
           context: .
           push: true
-          file: .github/workflows/cloudzilla/Dockerfile
+          file: Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: Deploy on Section
