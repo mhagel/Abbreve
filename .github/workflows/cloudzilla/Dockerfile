@@ -25,16 +25,16 @@ RUN if [ -f package-lock.json ]; then npm install; \
 
 # Copy the app's source code and build it
 COPY . ./
-RUN npm run build
+RUN vite build
 
 # Use a lightweight NGINX image for serving the app
 FROM nginx:alpine
 
 # Copy the built files from the previous stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/ /usr/share/nginx/html
 
 # Copy a custom NGINX configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY .github/workflows/cloudzilla/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
