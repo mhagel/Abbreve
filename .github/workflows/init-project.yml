@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_PREFIX: registry.cloudzilla.ai/lens-local-mark-project-e9abb66c99/
+  IMAGE_PREFIX: registry.cloudzilla.ai/.github&#x2F;workflows&#x2F;cloudzilla&#x2F;Dockerfile/
 
 jobs:
   cz-build-push:
