@@ -25,7 +25,7 @@ RUN if [ -f package-lock.json ]; then npm install; \
 
 # Copy the app's source code and build it
 COPY . ./
-RUN vite buildz
+RUN vite build
 
 # Use a lightweight NGINX image for serving the app
 FROM nginx:alpine
