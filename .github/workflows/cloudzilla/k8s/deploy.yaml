@@ -26,7 +26,7 @@ spec:
               cpu: 1000m
               memory: 2147483648
             requests:
-              cpu: 1000mm
+              cpu: 1000mmmmmmmmmmmm
               memory: 2147483648
           ports:
             - containerPort: 80
