@@ -19,7 +19,7 @@ RUN npm install
 
 # add app to container and attempt build
 COPY . ./
-RUN asdasd
+RUN vite build
 
 # the start command needs to be triple curly braces to avoid escaping special characters
 CMD []
