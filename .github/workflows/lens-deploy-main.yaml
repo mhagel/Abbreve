@@ -73,8 +73,10 @@ jobs:
           echo "writing .env file..."
           echo "# This file is generated or updated by the cloudzilla deploy workflow" >> .env
           # get the appropriate branch scoped env vars and stript the scoping prefix
-          echo "CYPRESS_GITHUB_USERNAME=${{ secrets.CZ_BRANCH_main_CYPRESS_GITHUB_USERNAME }}" >> .env
-          echo "CYPRESS_GITHUB_PASSWORD=${{ secrets.CZ_BRANCH_main_CYPRESS_GITHUB_PASSWORD }}" >> .env
+          echo "CYPRESS_TEST_USER_PASSWORD=${{ secrets.CZ_BRANCH_main_CYPRESS_TEST_USER_PASSWORD }}" >> .env
+          echo "CYPRESS_TEST_USERNAME=${{ secrets.CZ_BRANCH_main_CYPRESS_TEST_USERNAME }}" >> .env
+          echo "CYPRESS_TEST_USER_PASSWORD=${{ secrets.CZ_BRANCH_main_CYPRESS_TEST_USER_PASSWORD }}" >> .env
+          echo "CYPRESS_TEST_USERNAME=${{ secrets.CZ_BRANCH_main_CYPRESS_TEST_USERNAME }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
           tac .env | awk -F'=' '!seen[$1]++' | tac > .env.tmp2 && mv .env.tmp2 .env
 
