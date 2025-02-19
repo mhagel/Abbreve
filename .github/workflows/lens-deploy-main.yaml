@@ -73,15 +73,8 @@ jobs:
           echo "writing .env file..."
           echo "# This file is generated or updated by the cloudzilla deploy workflow" >> .env
           # get the appropriate branch scoped env vars and stript the scoping prefix
-          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.CZ_BRANCH_main_NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env
-          echo "SUPABASE_SECRET_KEY=${{ secrets.CZ_BRANCH_main_SUPABASE_SECRET_KEY }}" >> .env
-          echo "QSTASH_CURRENT_SIGNING_KEY=${{ secrets.CZ_BRANCH_main_QSTASH_CURRENT_SIGNING_KEY }}" >> .env
-          echo "QSTASH_NEXT_SIGNING_KEY=${{ secrets.CZ_BRANCH_main_QSTASH_NEXT_SIGNING_KEY }}" >> .env
-          echo "QSTASH_ENV_TOKEN=${{ secrets.CZ_BRANCH_main_QSTASH_ENV_TOKEN }}" >> .env
-          echo "CUSTOMER_IO_SECRET_KEY=${{ secrets.CZ_BRANCH_main_CUSTOMER_IO_SECRET_KEY }}" >> .env
-          echo "CUSTOMER_IO_TRACKINGAPI_ID=${{ secrets.CZ_BRANCH_main_CUSTOMER_IO_TRACKINGAPI_ID }}" >> .env
-          echo "CUSTOMER_IO_TRACKINGAPI_KEY=${{ secrets.CZ_BRANCH_main_CUSTOMER_IO_TRACKINGAPI_KEY }}" >> .env
-          echo "CUSTOMER_IO_TRACKING_DOMAIN=${{ secrets.CZ_BRANCH_main_CUSTOMER_IO_TRACKING_DOMAIN }}" >> .env
+          echo "=${{ secrets.CZ_BRANCH_main_ }}" >> .env
+          echo "=${{ secrets.CZ_BRANCH_main_ }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
           tac .env | awk -F'=' '!seen[$1]++' | tac > .env.tmp2 && mv .env.tmp2 .env
 
