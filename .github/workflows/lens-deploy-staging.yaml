@@ -74,7 +74,7 @@ jobs:
           echo "# This file is generated or updated by the cloudzilla deploy workflow" >> .env
           # get the appropriate branch scoped env vars and stript the scoping prefix
           echo "FOO=${{ secrets.CZ_BRANCH_staging_FOO }}" >> .env
-          echo "KJJHGFF=${{ secrets.CZ_BRANCH_staging_KJJHGFF }}" >> .env
+          echo "bbbvcbcvb=${{ secrets.CZ_BRANCH_staging_bbbvcbcvb }}" >> .env
           echo "0=${{ secrets.CZ_BRANCH_staging_0 }}" >> .env
           echo "1=${{ secrets.CZ_BRANCH_staging_1 }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
