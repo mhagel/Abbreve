@@ -73,7 +73,8 @@ jobs:
           echo "writing .env file..."
           echo "# This file is generated or updated by the cloudzilla deploy workflow" >> .env
           # get the appropriate branch scoped env vars and stript the scoping prefix
-          echo "TEST_KEY=${{ secrets.CZ_BRANCH_staging_TEST_KEY }}" >> .env
+          echo "FOO=${{ secrets.CZ_BRANCH_staging_FOO }}" >> .env
+          echo "0=${{ secrets.CZ_BRANCH_staging_0 }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
           tac .env | awk -F'=' '!seen[$1]++' | tac > .env.tmp2 && mv .env.tmp2 .env
 
