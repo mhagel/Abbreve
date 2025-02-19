@@ -75,8 +75,10 @@ jobs:
           # get the appropriate branch scoped env vars and stript the scoping prefix
           echo "FOO=${{ secrets.CZ_BRANCH_staging_FOO }}" >> .env
           echo "bbbvcbcvb=${{ secrets.CZ_BRANCH_staging_bbbvcbcvb }}" >> .env
-          echo "0=${{ secrets.CZ_BRANCH_staging_0 }}" >> .env
-          echo "1=${{ secrets.CZ_BRANCH_staging_1 }}" >> .env
+          echo "BAZ=${{ secrets.CZ_BRANCH_staging_BAZ }}" >> .env
+          echo "FOO=${{ secrets.CZ_BRANCH_staging_FOO }}" >> .env
+          echo "BBBVCBCVB=${{ secrets.CZ_BRANCH_staging_BBBVCBCVB }}" >> .env
+          echo "BAZ=${{ secrets.CZ_BRANCH_staging_BAZ }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
           tac .env | awk -F'=' '!seen[$1]++' | tac > .env.tmp2 && mv .env.tmp2 .env
 
