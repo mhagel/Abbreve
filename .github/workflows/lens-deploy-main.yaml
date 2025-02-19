@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_PREFIX: registry.cloudzilla.ai/lens-local-mark-project-94a5f7e6c7/main/
+  IMAGE_PREFIX: registry.cloudzilla.ai/lens-local-mark-project-ca187d8ba8/main/
 
 jobs:
   cz-build-push:
@@ -22,7 +22,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: https://registry.cloudzilla.ai/
-          username: 'robot$lens-local-mark-project-94a5f7e6c7+imageuser'
+          username: 'robot$lens-local-mark-project-ca187d8ba8+imageuser'
           password: '${{ secrets.CZ_BRANCH_main_DOCKER_PASSWORD }}'
 
       - name: downcase REPO
@@ -75,10 +75,6 @@ jobs:
           # get the appropriate branch scoped env vars and stript the scoping prefix
           echo "CYPRESS_GITHUB_USERNAME=${{ secrets.CZ_BRANCH_main_CYPRESS_GITHUB_USERNAME }}" >> .env
           echo "CYPRESS_GITHUB_PASSWORD=${{ secrets.CZ_BRANCH_main_CYPRESS_GITHUB_PASSWORD }}" >> .env
-          echo "CONSOLE_URL=${{ secrets.CZ_BRANCH_main_CONSOLE_URL }}" >> .env
-          echo "TCP_INGRESS_URL_SUFFIX=${{ secrets.CZ_BRANCH_main_TCP_INGRESS_URL_SUFFIX }}" >> .env
-          echo "KEI_URL_SUFFIX=${{ secrets.CZ_BRANCH_main_KEI_URL_SUFFIX }}" >> .env
-          echo "NEXT_PUBLIC_CUSTOMER_DNS_URL_SUFFIX=${{ secrets.CZ_BRANCH_main_NEXT_PUBLIC_CUSTOMER_DNS_URL_SUFFIX }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
           tac .env | awk -F'=' '!seen[$1]++' | tac > .env.tmp2 && mv .env.tmp2 .env
 
@@ -95,7 +91,7 @@ jobs:
           SECTION_K8S_API_URL: '${{ secrets.CZ_BRANCH_main_SECTION_K8S_API_URL }}'
           SECTION_API_TOKEN: '${{ secrets.CZ_BRANCH_main_SECTION_API_TOKEN }}'
           DOCKER_SERVER: 'registry.cloudzilla.ai'
-          DOCKER_USERNAME: 'robot$lens-local-mark-project-94a5f7e6c7+imageuser'
+          DOCKER_USERNAME: 'robot$lens-local-mark-project-ca187d8ba8+imageuser'
           DOCKER_PASSWORD: '${{ secrets.CZ_BRANCH_main_DOCKER_PASSWORD }}'
           FULL_IMAGE_WITH_TAG: '${{ env.DOCKER_METADATA_OUTPUT_TAGS }}'
           POD_NAME: '${{ env.IMAGE_NAME }}'
