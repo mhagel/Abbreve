@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_PREFIX: registry.cloudzilla.ai/rc-project-17b92b2fb9/main/
+  IMAGE_PREFIX: registry.cloudzilla.ai/lens-local-mark-project-ee9a3a6dc3/main/
 
 jobs:
   cz-build-push:
@@ -22,8 +22,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: https://registry.cloudzilla.ai/
-          username: 'robot$rc-project-17b92b2fb9+imageuser'
-          password: '${{ secrets.CZ_BRANCH_MAIN_DOCKER_PASSWORD }}'
+          username: 'robot$lens-local-mark-project-ee9a3a6dc3+imageuser'
+          password: '${{ secrets.CZ_BRANCH_main_DOCKER_PASSWORD }}'
 
       - name: downcase REPO
         run: |
@@ -73,8 +73,7 @@ jobs:
           echo "writing .env file..."
           echo "# This file is generated or updated by the cloudzilla deploy workflow" >> .env
           # get the appropriate branch scoped env vars and stript the scoping prefix
-          echo "BLUE=${{ secrets.CZ_BRANCH_MAIN_BLUE }}" >> .env
-          echo "BLUE=${{ secrets.CZ_BRANCH_MAIN_BLUE }}" >> .env
+          echo "=${{ secrets.CZ_BRANCH_main_ }}" >> .env
           # remove duplicates keeping the items at the bottom of the file
           tac .env | awk -F'=' '!seen[$1]++' | tac > .env.tmp2 && mv .env.tmp2 .env
 
@@ -88,11 +87,11 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: Deploy on Section
         env:
-          SECTION_K8S_API_URL: '${{ secrets.CZ_BRANCH_MAIN_SECTION_K8S_API_URL }}'
-          SECTION_API_TOKEN: '${{ secrets.CZ_BRANCH_MAIN_SECTION_API_TOKEN }}'
+          SECTION_K8S_API_URL: '${{ secrets.CZ_BRANCH_main_SECTION_K8S_API_URL }}'
+          SECTION_API_TOKEN: '${{ secrets.CZ_BRANCH_main_SECTION_API_TOKEN }}'
           DOCKER_SERVER: 'registry.cloudzilla.ai'
-          DOCKER_USERNAME: 'robot$rc-project-17b92b2fb9+imageuser'
-          DOCKER_PASSWORD: '${{ secrets.CZ_BRANCH_MAIN_DOCKER_PASSWORD }}'
+          DOCKER_USERNAME: 'robot$lens-local-mark-project-ee9a3a6dc3+imageuser'
+          DOCKER_PASSWORD: '${{ secrets.CZ_BRANCH_main_DOCKER_PASSWORD }}'
           FULL_IMAGE_WITH_TAG: '${{ env.DOCKER_METADATA_OUTPUT_TAGS }}'
           POD_NAME: '${{ env.IMAGE_NAME }}'
           DEBUG: 1
